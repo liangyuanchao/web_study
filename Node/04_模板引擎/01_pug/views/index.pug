@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        style.
+            .mydiv{
+                width:200px;
+                height:200px;
+                background:red;
+            }
+    body
+        //- 通过缩进来表示标签层级
+        h1 我是标题
+        div 我是同级
+        div(class="mydiv") 我是类名为mydiv的div
+            span 我是mydiv里的里的span标签
+        //- 简写 类名 和 id名
+        .mydiv2 我是div2
+        #myid 我是id为myid的div
+        //- 行内样式
+        .mydiv3(style={width:"100px",height:"100px",background:"blue"}) 我是div2
+        //- 我是单行注释
+        //-
+           我是多行注释1
+           我是多行注释2
+            竖线是转义
+        // 我是html注释
+        div
+            | hello
+        //- 定义变量
+        - let str = "你好"
+        //- 插值表达式
+        p #{str}
+        //- 后端推送数据
+        p #{data}
+        //- 循环
+        ul
+            each item,index in users
+                li 姓名是：#{item.uname};年龄是：#{item.age};身高是：#{item.height};索引是：#{index}
+        //- for 循环
+        - for(let i = 0; i < 4; i++)
+            span 我是for循环体#{i}
+        - let num = 1
+            case num
+                when 1
+                    p num 是一
+                when 2
+                    p num 是二
+                when 3
+                    p num 是三
+                default
+                    p num 是其他值
+        //- 混入
+        //- 1.声明一个 mydiv
+        mixin mydiv
+            div 我是非常常用的div
+        //- 2.需要多少的 div 就调用多少个 +mydiv
+        +mydiv
+        +mydiv
+        //- 灵活使用
+        //- 声明一个类似函数 pet
+        mixin pet(name,sex)
+            p 这是一只#{name};他的性别是#{sex}
+        //- 调用 pet
+        +pet("小狗","公")
+        +pet("小猫","母")
+        
+        //- include 引入公共模板
+        include common.pug
+
+        //- script 标签
+        script(type="text/javascript").
+            console.log(1111)

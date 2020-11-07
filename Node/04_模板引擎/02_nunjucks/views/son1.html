@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- son1 子模版使用 父模板 parent.html 中的模板 -->
+    <!-- 通过 extends 继承 parent.html 模板 -->
+    {% extends "parent.html" %}
+    <!-- extends、block、endblock 是关键字 -->
+    <!-- left、right 是声明的变量 -->
+    {% block left %}
+    我是son1里左侧内容
+    {% endblock %}
+
+    {% block right %}
+    我是son1里右侧内容
+    {% endblock %}
+
+    {% block somevalue %}
+    <!-- 可以通过 es6 中 super() 继承父模板中的特性 -->
+    {{super()}}
+    {% endblock %}
+</body>
+
+</html>

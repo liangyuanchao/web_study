@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>我是内容标题</h1>
+
+    <!-- 只是改变了 模板内容 需要重启下服务器才能渲染页面 -->
+    <p>用户名是：{{username}}</p>
+
+    <!-- 我是注释 -->
+    {# 我是nunjucks注释 #}
+
+    <!-- 判断语句 类似 if...else if...  -->
+    {% if num > 3 %}
+    <p>num值大于三</p>
+    {% elseif num < 3 %}
+    <p>num值小于三</p>
+    {% else %}
+    <p>num值等于三</p>
+    {% endif %}
+    <!-- 所有 循环语句 判断语句 需要在结束加 end 标志,表示结束 -->
+
+    <!-- 循环 -->
+    <ul>
+        {% for item in arr %}
+        <li>姓名是：{{item.name}}；年龄是：{{item.age}}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- 过滤器 -->
+    {{str | replace("world", "世界")  | capitalize}}
+
+    <!-- macro: 宏标签 -->
+    <!-- 定义一个pet函数 -->
+    {% macro pet(name="小狗",sex) %}
+    <p>我是一只{{name}},我的性别是{{sex}}</p>
+    {% endmacro %}
+    <!-- 调用 使用多少调用多少 -->
+    {{pet("小狗","公")}}
+    {{pet("小猫","母")}}
+
+    <!-- 引入公共部分 -->
+    {% include "common.html" %}
+
+    <!-- import 引入方式 -->
+    {% macro person(name,age) %}
+    <p>我是{{name}},我的年龄{{age}}</p>
+    {% endmacro %}
+</body>
+
+</html>
