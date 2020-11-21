@@ -1,12 +1,16 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const static = require('koa-static');
-const userData = require('./data/users.json')
+const koaBody = require('koa-body');
+const userData = require('./data/users.json');
 
 let app = new Koa();
 let router = new Router();
 
 app.use(static(__dirname + '/static'));
+app.use(koaBody({
+    multipart: true
+}));
 
 router.get('/', (ctx, next) => {
     ctx.body = 'hello'
@@ -36,7 +40,16 @@ router.get('/get/:id', (ctx, next) => {
     console.log(ctx.params);
     ctx.body = {
         status: 1,
-        info: '请求成功'
+        info: 'get请求成功'
+    }
+})
+
+// 03.html
+router.post('/post', (ctx, next) => {
+    console.log(ctx.request.body);
+    ctx.body = {
+        status: 1,
+        info: "post请求成功"
     }
 })
 

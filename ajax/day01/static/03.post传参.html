@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="" method="post"></form> -->
+    <button>点击发送post</button>
+    
+    <script type="text/javascript">
+        document.querySelector('button').onclick = function() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('post', '/post', true)
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+                // 获取返还头信息
+                // console.log(xhr.getAllResponseHeaders());
+                console.log(xhr.getResponseHeader("content-type"));
+            }
+
+            // 1.普通编码
+            // xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            // let data = "username=王五&age=20";
+
+            // 2.二进制编码
+            // xhr.setRequestHeader("Content-Type","multipart/form-data");
+
+            // 3.json格式编码
+            xhr.setRequestHeader("content-type","application/json");
+            let data = JSON.stringify({
+                username:"王五",
+                age:20
+            })
+
+            xhr.send(data);
+        }
+    </script>
+</body>
+</html>
