@@ -36,7 +36,16 @@
       xhr.send();
       // 4.客户端接收端服务端响应的数据
       xhr.onload = function() {
-        console.log(xhr.responseText);
+        // console.log(xhr.responseText);
+        // // JSON.parse 将json字符串转换为json对象
+        let obj = JSON.parse(xhr.responseText);
+        // // console.log(obj);
+        document.querySelector('.exchange').innerHTML = obj.info;
+        if(obj.status == 1){
+          document.querySelector('.exchange').style.color = "green"
+        }else{
+          document.querySelector('.exchange').style.color = "red"
+        }
       }
     }
   </script>

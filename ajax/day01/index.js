@@ -13,8 +13,21 @@ router.get('/', (ctx, next) => {
 });
 
 router.get('/checkUserName', (ctx, next) => {
-    console.log(ctx.query);
-    ctx.body = 'hello'
+    // ctx.query 接收前端get传递的参数
+    // console.log(ctx.query);
+    let res = userData.find(v => v.name == ctx.query.username);
+    if(res){
+        ctx.body = {
+            status: 1,
+            info: '用户名正确'
+        }
+    }else{
+        ctx.body = {
+            status: 2,
+            info: '用户名错误'
+        }
+    }
+
 })
 
 app.use(router.routes());
