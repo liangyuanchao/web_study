@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="css/login.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="loginContainer">
+    <h1>登录</h1>
+    <form action="/checkUser" method="post">姓名：
+      <input class="inputStyle" type="text" name="username" />
+      <div class="exchange">用户名错误</div>
+      <br />密码：
+      <input class="inputStyle" type="password" name="pwd" /><br />
+      <input class="loginStyle" type="submit" value="登录" />
+    </form>
+  </div>
+  <script type="text/javascript">
+    /*
+     * ajax技术使用步骤
+     */
+    
+    document.querySelector('.inputStyle').onblur = function() {
+      // console.log(this.value)
+      // 1.创建ajax对象
+      const xhr = new XMLHttpRequest();
+      // 2.告诉浏览器往哪里发送
+      // (1)请求方式；(2)请求地址；(3)true异步请求，false同步请求
+      xhr.open('get', `/checkUserName?username=${this.value}`, true);
+      // 3.发送请求
+      xhr.send();
+      // 4.客户端接收端服务端响应的数据
+      xhr.onload = function() {
+        console.log(xhr.responseText);
+      }
+    }
+  </script>
+</body>
