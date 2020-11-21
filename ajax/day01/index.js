@@ -12,6 +12,7 @@ router.get('/', (ctx, next) => {
     ctx.body = 'hello'
 });
 
+// 01.html
 router.get('/checkUserName', (ctx, next) => {
     // ctx.query 接收前端get传递的参数
     // console.log(ctx.query);
@@ -28,6 +29,15 @@ router.get('/checkUserName', (ctx, next) => {
         }
     }
 
+})
+
+// 02.html
+router.get('/get/:id', (ctx, next) => {
+    console.log(ctx.params);
+    ctx.body = {
+        status: 1,
+        info: '请求成功'
+    }
 })
 
 app.use(router.routes());
