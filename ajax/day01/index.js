@@ -2,6 +2,7 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const static = require('koa-static');
 const koaBody = require('koa-body');
+const fs = require('fs');
 const userData = require('./data/users.json');
 
 let app = new Koa();
@@ -32,10 +33,9 @@ router.get('/checkUserName', (ctx, next) => {
             info: '用户名错误'
         }
     }
-
 })
 
-// 02.html
+// 02.html  04.html     05.html
 router.get('/get/:id', (ctx, next) => {
     console.log(ctx.params);
     ctx.body = {
@@ -51,6 +51,15 @@ router.post('/post', (ctx, next) => {
         status: 1,
         info: "post请求成功"
     }
+})
+
+// 07.html
+router.post("/upload",(ctx,next)=>{
+    console.log(ctx.request.body);
+    console.log(ctx.request.files.img);
+     let fileData =  fs.readFileSync(ctx.request.files.img.path);
+    fs.writeFileSync("static/imgs/"+ctx.request.files.img.name,fileData);
+    ctx.body = "请求成功";
 })
 
 app.use(router.routes());
