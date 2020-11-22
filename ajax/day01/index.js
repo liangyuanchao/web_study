@@ -62,6 +62,14 @@ router.post("/upload",(ctx,next)=>{
     ctx.body = "请求成功";
 })
 
+// 08.html
+router.post("/fileUpload", (ctx, next) => {
+    console.log(ctx.request.files);
+    let fileData =  fs.readFileSync(ctx.request.files.myfile.path);
+    fs.writeFileSync("static/imgs/"+ctx.request.files.myfile.name,fileData);
+    ctx.body = "请求成功";
+})
+
 app.use(router.routes());
 
 app.listen(8080, () => {
