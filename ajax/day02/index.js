@@ -2,6 +2,7 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const static = require('koa-static');
 const koaBody = require('koa-body');
+const fs = require('fs');
 
 let app = new Koa();
 let router = new Router();
@@ -67,6 +68,23 @@ router.get('/readyState', (ctx, next) => {
         info: '请求成功'
     }
 })
+
+// 7.html
+router.get('/error', (ctx, next) => {
+    // ctx.status 设置服务器状态码
+    ctx.status = 400;
+    ctx.body = 'not ok'
+})
+
+// 8.html
+router.get('/cache', (ctx, next) => {
+    fs.readFile('./test.txt', (err, result) => {
+        // console.log(result);
+        ctx.body = result;
+    })
+})
+
+
 
 app.use(router.routes());
 

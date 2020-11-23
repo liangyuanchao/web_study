@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.创建ajax对象
+        let xhr = new XMLHttpRequest();
+        // 2.请求方式与请求地址
+        // xhr.open('get', '/first', false);
+        xhr.open('get', '/first', true);
+        // 3.发送请求
+        xhr.send();
+        // 获取服务器端响应到客户端的数据
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4) {
+                console.log('2');
+                console.log(xhr.responseText);
+            }
+        }
+        console.log('1');
+    </script>
+</body>
+</html>
