@@ -1,11 +1,16 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const static = require('koa-static');
+const koaBody = require('koa-body');
 
 let app = new Koa();
 let router = new Router();
 
 app.use(static(__dirname + '/static'));
+
+app.use(koaBody({
+    multipart: true
+}))
 
 router.get('/', (ctx, next) => {
     ctx.body = "hello - ajax"
@@ -38,8 +43,30 @@ router.get('/get/:username/:age', (ctx, next) => {
 })
 
 // 4.html
+router.post('/post', (ctx, next) => {
+    console.log(ctx.request.body);
+    ctx.body = {
+        status: 1,
+        info: '请求成功'
+    }
+})
 
+// 5.html
+router.post('/json', (ctx, next) => {
+    console.log(ctx.request.body);
+    ctx.body = {
+        status: 1,
+        info: '请求成功'
+    }
+})
 
+// 6.html
+router.get('/readyState', (ctx, next) => {
+    ctx.body = {
+        status: 1,
+        info: '请求成功'
+    }
+})
 
 app.use(router.routes());
 
