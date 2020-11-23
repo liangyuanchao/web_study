@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.创建 ajax 对象
+        let xhr = new XMLHttpRequest();
+        // 2.请求方式与请求地址
+        xhr.open('get', '/responseData', true);
+        // 3.发送请求
+        xhr.send();
+        // 4.获取服务端响应客户端的数据
+        xhr.onload = function() {
+            console.log(typeof xhr.responseText);  // string
+            // JSON.parse 将JSON字符串转换为JSON对象
+            let responseText = JSON.parse(xhr.responseText);
+            // 测试： 在控制台输出处理结果
+            console.log(responseText);
+            // 将数据和html字符串进行拼接
+            let str = '<h2>'+ responseText.name +'</h2>';
+            // 将拼接的结果追加到页面
+            document.body.innerHTML = str;
+        }
+    </script>
+</body>
+</html>
