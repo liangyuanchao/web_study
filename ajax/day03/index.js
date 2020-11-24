@@ -61,6 +61,119 @@ router.get('/searchAutoPrompt', (ctx, next) => {
     ctx.body = result;
 })
 
+// 04.省市区联动.html
+// 获取省份
+router.get('/province', (ctx, next) => {
+    ctx.body = [{
+		id: '001',
+		name: '陕西省'
+	},{
+		id: '002',
+		name: '四川省'
+	},{
+		id: '003',
+		name: '河北省'
+	},{
+		id: '004',
+		name: '江苏省'
+	}];
+})
+// 获取城市
+router.get('/cities', (ctx, next) => {
+	// 获取省份id
+	const id = ctx.query.id;
+	// 城市信息
+	const cities = {
+		'001': [{
+			id: '300',
+			name: '西安市'
+		}, {
+			id: '301',
+			name: '安康市'
+		}, {
+			id: '302',
+			name: '咸阳市'
+		}, {
+			id: '303',
+			name: '宝鸡市'
+		}],
+		'002': [{
+			id: '400',
+			name: '成都市'
+		}, {
+			id: '401',
+			name: '绵阳市'
+		}, {
+			id: '402',
+			name: '德阳市'
+		}, {
+			id: '403',
+			name: '攀枝花市'
+		}],
+		'003': [{
+			id: '500',
+			name: '石家庄市'
+		}, {
+			id: '501',
+			name: '唐山市'
+		}, {
+			id: '502',
+			name: '秦皇岛市'
+		}, {
+			id: '503',
+			name: '邯郸市'
+		}],
+		'004': [{
+			id: '600',
+			name: '常州市'
+		}, {
+			id: '601',
+			name: '徐州市'
+		}, {
+			id: '602',
+			name: '南京市'
+		}, {
+			id: '603',
+			name: '淮安市'
+        }]
+	}
+	// 响应
+	ctx.body = cities[id];
+});
+// 根据城市id获取县城
+router.get('/areas', (ctx, next) => {
+	// 获取城市id
+	const id = ctx.query.id;
+	// 县城信息
+	const areas = {
+		'300': [{
+			id: '20',
+			name: '莲湖区',
+		}, {
+			id: '21',
+			name: '碑林区'
+		}, {
+			id: '22',
+			name: '新城区',
+		}, {
+			id: '23',
+			name: '高新区'
+		}],
+		'301': [{
+			id: '30',
+			name: '汉滨区'
+		}, {
+			id: '31',
+			name: '镇安县'
+		}, {
+			id: '32',
+			name: '旬阳县'
+		}]
+	};
+	// 响应
+	ctx.body = areas[id] || [];
+});
+
 
 app.use(router.routes());
 
