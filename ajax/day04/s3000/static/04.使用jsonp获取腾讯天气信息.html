@@ -39,12 +39,12 @@
 		var box = document.getElementById('box');
 
 		function dateFormat(date) {
-			var year = date.substr(0, 4);
-			var month = date.substr(4, 2);
-			var day = date.substr(6, 2);
-			var hour = date.substr(8, 2);
-			var minute = date.substr(10, 2);
-			var seconds = date.substr(12, 2);
+			let year = date.substr(0, 4);
+			let month = date.substr(4, 2);
+			let day = date.substr(6, 2);
+			let hour = date.substr(8, 2);
+			let minute = date.substr(10, 2);
+			let seconds = date.substr(12, 2);
 
 			return year + '年' + month + '月' + day + '日' + hour + '时' + minute + '分' + seconds + '秒';
 		}
@@ -63,7 +63,7 @@
 				city: '西安市'
 			},
 			success: function (data) {
-				var html = template('tpl', {info: data.data.forecast_1h});
+				let html = template('tpl', {info: data.data.forecast_1h});
 				box.innerHTML = html;
 				
 			}

@@ -11,6 +11,10 @@ router.get('/', (ctx, next) => {
     ctx.body = 'Hello, ajax'
 })
 
+
+
+
+
 app.use(router.routes());
 
 app.listen(3000, () => {
