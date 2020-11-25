@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormData对象使用方法</title>
+</head>
+<body>
+    <form id="form">
+        <p>
+            姓名：<input type="text" name="username">
+        </p>
+        <p>
+            密码：<input type="password" name="password">
+        </p>
+        <p>
+            <input type="button" value="提交" id="btn">
+        </p>
+    </form>
+
+    <script type="text/javascript">
+        // 获取按钮
+        let btn = document.querySelector('#btn');
+        let form = document.querySelector('#form');
+        // 添加点击事件
+        btn.onclick = function() {
+            // 将普通html表单转换为表单对象
+            let formData = new FormData(form);
+            // 创建ajax对象
+            let xhr = new XMLHttpRequest();
+            // 配置ajax
+            xhr.open('post', 'http://localhost:8080/formData', true);
+            // 发送请求
+            xhr.send(formData);
+            // 监听xhr对象下面的onload事件
+            xhr.onload = function() {
+                // 对象http状态码进行判断
+				if (xhr.status == 200) {
+					console.log(xhr.responseText);
+				}
+            }
+        }
+    </script>
+</body>
+</html>

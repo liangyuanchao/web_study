@@ -2,6 +2,9 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const static = require('koa-static');
 const koaBody = require('koa-body');
+const fs = require('fs');
+
+const formidable = require('formidable');
 
 const app = new Koa();
 const router = new Router();
@@ -173,6 +176,14 @@ router.get('/areas', (ctx, next) => {
 	// 响应
 	ctx.body = areas[id] || [];
 });
+
+
+// 05.html 06.html
+router.post('/formData', (ctx, next) => {
+	console.log(ctx.request.body);
+	let result = ctx.request.body;
+    ctx.body = result;
+})
 
 
 app.use(router.routes());
