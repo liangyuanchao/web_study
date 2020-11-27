@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">非同源 非简单请求</button>
+    <script>
+        let btn = document.querySelector('#btn');
+        btn.onclick = function () {
+            const xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://localhost:4000/postData');
+            xhr.onload = () => {
+                console.log(xhr.responseText);
+            }
+
+            xhr.setRequestHeader("content-type", "application/json");
+            const data = {
+                name: '123',
+                age: 18
+            };
+            xhr.send(JSON.stringify(data));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">代理</button>
+    <script>
+        let btn = document.querySelector('#btn');
+        btn.onclick = function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://localhost:3000/getDaili')
+            xhr.onload = () => {
+                console.log(xhr.response);
+            }
+            xhr.send();
+        }
+    </script>
+</html>

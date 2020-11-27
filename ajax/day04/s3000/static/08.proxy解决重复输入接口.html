@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">第三方库实现代理get</button>
+    <button id="btn1">第三方库实现代理post</button>
+    <script>
+        let btn = document.querySelector('#btn');
+        btn.onclick = function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://localhost:3000/api/getGency')
+            xhr.onload = () => {
+                console.log(xhr.response);
+            }
+            xhr.send();
+        }
+
+
+        let btn1 = document.querySelector('#btn1');
+        btn1.onclick = function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://localhost:3000/api/getGency')
+            xhr.onload = () => {
+                console.log(xhr.response);
+            }
+            xhr.send();
+        }
+    </script>
+</html>
