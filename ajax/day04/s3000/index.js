@@ -12,13 +12,14 @@ const router = new Router();
 app.use(static(__dirname + '/static'));
 // 配置 proxy，也是一种代理方式
 app.use(
-    proxy("/api",{
-        target: "http://localhost:4000",
-        pathRewrite: {
-            "^/api": "",
-        }
-    }
-))
+    proxy("/api", {
+      target: "http://localhost:4000",
+      pathRewrite: {
+        "^/api": "",
+      },
+    })
+);
+
 
 router.get('/', (ctx, next) => {
     ctx.body = 'Hello, ajax'
