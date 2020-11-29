@@ -11,6 +11,14 @@ router.get('/', ctx => {
     ctx.body = 'Hello - server'
 });
 
+router.post('/base', ctx => {
+    // ctx.status = 404
+    ctx.body = {
+        name: 'zhangsan',
+        age: 30
+    }
+})
+
 app.use(router.routes());
 
 app.listen(8080, () => {
